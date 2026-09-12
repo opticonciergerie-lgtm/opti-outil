@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opti Conciergerie · Business plan 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1F3F1;--ink:#152229;--ink-soft:#4A5860;--line:#D8DCD7;--surface:#FFFFFF;
+    --marine:#0F5C6B;--marine-deep:#0B424D;--pos:#237A57;--neg:#B4442C;--amber:#CF9233;--amber-soft:#FBF3E2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;padding:clamp(12px,3vw,36px);font-variant-numeric:tabular-nums}
+  .wrap{max-width:1180px;margin:0 auto}
+  .num{font-family:'Space Grotesk',sans-serif;font-variant-numeric:tabular-nums}
+
+  header{margin-bottom:16px}
+  .kicker{font-family:'Space Grotesk';font-weight:500;color:var(--marine);font-size:.9rem}
+  h1{font-family:'Space Grotesk';font-weight:700;font-size:clamp(1.4rem,4vw,2rem);line-height:1.1;margin:2px 0 4px}
+  .sub{color:var(--ink-soft);max-width:64ch;font-size:.92rem}
+
+  nav{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 20px}
+  nav button{font-family:'Space Grotesk';font-weight:500;font-size:.92rem;border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);padding:9px 16px;border-radius:10px;cursor:pointer}
+  nav button.active{background:var(--marine);border-color:var(--marine);color:#fff}
+
+  .tab{display:none}.tab.active{display:block}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}}
+
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:20px}
+  .panel h2{font-family:'Space Grotesk';font-weight:600;font-size:1.05rem;margin-bottom:2px}
+  .panel .note{font-size:.8rem;color:var(--ink-soft);margin-bottom:14px}
+
+  .ctrl{margin:15px 0}
+  .ctrl .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:7px}
+  .ctrl label{font-size:.88rem;font-weight:500}
+  .ctrl .val{font-family:'Space Grotesk';font-weight:600;font-size:1rem;color:var(--marine)}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:5px;background:linear-gradient(var(--marine),var(--marine)) no-repeat, var(--line);background-size:var(--fill,50%) 100%;cursor:pointer}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:19px;height:19px;border-radius:50%;background:var(--marine);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+  input[type=range]::-moz-range-thumb{width:19px;height:19px;border:3px solid #fff;border-radius:50%;background:var(--marine);box-shadow:0 1px 4px rgba(0,0,0,.25)}
+
+  .master{background:var(--amber-soft);border:1px solid #EBD8AE;border-radius:12px;padding:14px 16px;margin:18px 0 4px}
+  .master .val{color:#9A6C15}
+  .master .tag{font-family:'Space Grotesk';font-size:.72rem;font-weight:600;color:#9A6C15;letter-spacing:.03em}
+  .master input[type=range]{background:linear-gradient(var(--amber),var(--amber)) no-repeat,#E9D9B2;background-size:var(--fill,50%) 100%}
+  .master input[type=range]::-webkit-slider-thumb{background:var(--amber)}
+  .master input[type=range]::-moz-range-thumb{background:var(--amber)}
+
+  .group-title{font-family:'Space Grotesk';font-weight:600;font-size:.82rem;color:var(--ink-soft);margin:22px 0 2px;padding-top:14px;border-top:1px solid var(--line)}
+  .group-title.first{border-top:none;padding-top:0;margin-top:6px}
+
+  .line{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+  .line:last-child{border-bottom:none}
+  .line .k{color:var(--ink-soft)}.line .v{font-family:'Space Grotesk';font-weight:600}
+  .line.total{margin-top:4px;padding-top:12px;border-top:2px solid var(--ink)}
+  .line.total .k{color:var(--ink);font-weight:600}.line.total .v{font-size:1.15rem}
+  .v.pos{color:var(--pos)}.v.neg{color:var(--neg)}
+  .sub-line .k{padding-left:14px;color:#93A0A6;font-size:.86rem}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:20px}
+  @media(max-width:820px){.kpis{grid-template-columns:1fr 1fr}}
+  .kpi{background:var(--surface);padding:16px 18px}
+  .kpi .lbl{font-size:.78rem;color:var(--ink-soft);margin-bottom:6px;min-height:2.4em}
+  .kpi .big{font-family:'Space Grotesk';font-weight:700;font-size:clamp(1.4rem,3.6vw,2rem);line-height:1}
+  .kpi .hint{font-size:.76rem;color:var(--ink-soft);margin-top:5px}
+  .big.pos{color:var(--pos)}.big.neg{color:var(--neg)}
+
+  .alert{border-radius:11px;padding:12px 14px;font-size:.86rem;margin-top:14px;display:flex;gap:10px;align-items:flex-start}
+  .alert.warn{background:#FBECE7;border:1px solid #E7BEB0;color:#8A3320}
+  .alert.ok{background:#E8F3ED;border:1px solid #B9DBC9;color:#1C5E42}
+  .alert.info{background:#EAF1F3;border:1px solid #B8D0D6;color:#0B424D}
+  .alert .dot{font-weight:700;font-family:'Space Grotesk'}
+
+  table{width:100%;border-collapse:collapse;margin-top:6px;font-size:.86rem}
+  th,td{padding:8px 6px;text-align:right;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  thead th{font-weight:600;color:var(--ink-soft);font-size:.76rem}
+  tbody td{font-family:'Space Grotesk';font-weight:500}
+  tbody tr.live{background:var(--amber-soft)}
+  tbody tr.ref{background:#EAF1F3}
+  td.name{font-family:'Inter';font-weight:500}
+
+  .chg-table input[type=number],.chg-table input[type=text]{font-family:'Space Grotesk';font-size:.86rem;border:1px solid var(--line);border-radius:7px;padding:5px 7px;width:100%;text-align:right}
+  .chg-table input[type=text]{text-align:left}
+  .chg-table select{font-family:'Inter';font-size:.82rem;border:1px solid var(--line);border-radius:7px;padding:5px 6px;background:#fff}
+  .chg-table td{padding:5px 5px;border-bottom:1px solid var(--line)}
+  .chg-del{border:none;background:none;color:var(--neg);cursor:pointer;font-size:1rem;font-weight:700}
+  .btn{font-family:'Space Grotesk';font-weight:500;font-size:.86rem;border:1px solid var(--marine);background:var(--marine);color:#fff;padding:8px 14px;border-radius:9px;cursor:pointer;margin-top:12px}
+  .num-field{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+  .num-field label{font-weight:500}
+  .num-field .sfx{color:var(--ink-soft);font-size:.82rem}
+  .num-field input{font-family:'Space Grotesk';font-weight:600;border:1px solid var(--line);border-radius:7px;padding:6px 8px;width:110px;text-align:right}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  .seg select{border:none;font-family:'Space Grotesk';font-weight:600;padding:7px 10px;background:#fff}
+  footer{margin-top:20px;font-size:.78rem;color:var(--ink-soft);text-align:center;line-height:1.6}
+  .tgrid{display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start}
+  @media(max-width:900px){.tgrid{grid-template-columns:1fr}}
+  .nf{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 0;font-size:.86rem;border-bottom:1px solid var(--line)}
+  .nf:last-child{border-bottom:none}
+  .nf label{font-weight:500;flex:1}
+  .nf .box{display:flex;align-items:center;gap:5px}
+  .nf input,.nf select{font-family:'Space Grotesk';font-weight:600;border:1px solid var(--line);border-radius:7px;padding:6px 8px;width:98px;text-align:right;background:#fff}
+  .nf select{width:auto;text-align:left}
+  .nf .sfx{color:var(--ink-soft);font-size:.78rem;min-width:30px}
+  .nf.hot input{border-color:#E7BEB0;background:#FDF4F1}
+  .flag{color:var(--neg);font-weight:600;font-size:.7rem;font-family:'Space Grotesk'}
+  .weights{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:6px}
+  .wcell{text-align:center}
+  .wcell span{display:block;font-size:.68rem;color:var(--ink-soft)}
+  .wcell input{width:100%;font-family:'Space Grotesk';font-weight:600;border:1px solid var(--line);border-radius:6px;padding:4px 2px;text-align:center;font-size:.8rem}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;margin-bottom:6px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .swatch{width:14px;height:3px;border-radius:2px;display:inline-block}
+  .tscroll{overflow-x:auto}
+  .ttable{width:100%;border-collapse:collapse;margin-top:8px;font-size:.8rem}
+  .ttable th,.ttable td{padding:6px 5px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+  .ttable th:first-child,.ttable td:first-child{text-align:left;position:sticky;left:0;background:var(--surface)}
+  .ttable thead th{font-weight:600;color:var(--ink-soft);font-size:.72rem}
+  .ttable tbody td{font-family:'Space Grotesk';font-weight:500}
+  .ttable td.neg{color:var(--neg)}.ttable td.pos{color:var(--pos)}
+  .ttable tr.summer td:first-child{color:var(--amber);font-weight:600}
+  .toggle-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .toggle-row input[type=checkbox]{width:18px;height:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">Opti Conciergerie</div>
+    <h1>Business plan &amp; simulateur d'embauche — 2027</h1>
+    <p class="sub">Toutes les hypothèses sont modifiables. Les impôts et le coût chargé du CDI sont des estimations à valider avec ton comptable. Le dashboard synthétise l'ensemble.</p>
+  </header>
+
+  <nav>
+    <button data-tab="dashboard" class="">Dashboard</button>
+    <button data-tab="ca" class="">Chiffre d'affaires</button>
+    <button data-tab="menage" class="">Ménage &amp; CDI</button>
+    <button data-tab="charges" class="">Charges &amp; Impôts</button>
+    <button data-tab="tresorerie" class="active">Trésorerie</button>
+    <button id="export-btn" style="margin-left:auto;background:var(--amber);border-color:var(--amber);color:#3a2a06">💾 Enregistrer ma version</button>
+  </nav>
+
+  <!-- ================= DASHBOARD ================= -->
+  <section class="tab" id="tab-dashboard">
+    <div class="panel">
+      <h2>Pilotage</h2>
+      <p class="note">Fais varier la taille du parc — tout se recalcule, ici et dans les autres onglets.</p>
+      <div class="master">
+        <div class="tag">TAILLE DU PARC VISÉE</div>
+        <div class="top" style="margin-top:6px"><label>Nombre de logements en gestion</label><span class="val num" id="l-nbLog">60 logts</span></div>
+        <input type="range" id="nbLog" min="40" max="100" step="1" value="60" style="--fill: 33.33333333333333%;">
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><div class="lbl">CA prévisionnel</div><div class="big num" id="k-ca">108 000&nbsp;€</div><div class="hint" id="k-ca-h">1 800&nbsp;€ / logement</div></div>
+      <div class="kpi"><div class="lbl">Résultat net après impôts</div><div class="big num pos" id="k-res">12 632&nbsp;€</div><div class="hint" id="k-res-h">IS</div></div>
+      <div class="kpi"><div class="lbl">Seuil de rentabilité (parc à l'équilibre)</div><div class="big num" id="k-seuil">48 logts</div><div class="hint" id="k-seuil-h">atteint</div></div>
+      <div class="kpi"><div class="lbl">Logements pour autofinancer le CDI</div><div class="big num" id="k-autofin">20</div><div class="hint">nouveaux biens nets à signer</div></div>
+    </div>
+
+    <div class="grid">
+      <div class="panel">
+        <h2>Compte de résultat prévisionnel</h2>
+        <p class="note">À la taille de parc choisie.</p>
+        <div class="line"><span class="k">Chiffre d'affaires</span><span class="v num" id="d-ca">108 000&nbsp;€</span></div>
+        <div class="line sub-line"><span class="k">dont gestion</span><span class="v num" id="d-gest">69 000&nbsp;€</span></div>
+        <div class="line sub-line"><span class="k">dont ménage facturé</span><span class="v num" id="d-menrev">33 000&nbsp;€</span></div>
+        <div class="line sub-line"><span class="k">dont linge facturé</span><span class="v num" id="d-lingerev">6 000&nbsp;€</span></div>
+        <div class="line"><span class="k">− Ménage sous-traité (prestataire)</span><span class="v num" id="d-prest">− 21 870&nbsp;€</span></div>
+        <div class="line"><span class="k">− Coût du linge</span><span class="v num" id="d-linge">− 2 400&nbsp;€</span></div>
+        <div class="line"><span class="k">− Charges fixes</span><span class="v num" id="d-cf">− 33 149&nbsp;€</span></div>
+        <div class="line"><span class="k">− Coût total du CDI</span><span class="v num" id="d-cdi">− 35 720&nbsp;€</span></div>
+        <div class="line total"><span class="k">Bénéfice avant impôt</span><span class="v num pos" id="d-benef">14 861&nbsp;€</span></div>
+        <div class="line"><span class="k">− Impôt sur le bénéfice (<span id="d-regime">IS</span>)</span><span class="v num" id="d-impot">− 2 229&nbsp;€</span></div>
+        <div class="line total"><span class="k">Résultat net</span><span class="v num pos" id="d-net">12 632&nbsp;€</span></div>
+        <div class="line" style="margin-top:8px"><span class="k">TVA à reverser (trésorerie, hors résultat)</span><span class="v num" id="d-tva">18 787&nbsp;€</span></div>
+      </div>
+
+      <div class="panel">
+        <h2>Objectif &amp; points de rupture</h2>
+        <p class="note">Ce qu'il faut atteindre pour être dans le vert.</p>
+        <div id="d-objectif"><div class="alert ok"><span class="dot">✓</span><span>À 60 logements, tu es rentable : <b>12 632&nbsp;€</b> de résultat net. Le seuil d'équilibre est à 48 biens, tu es au-dessus.</span></div></div>
+        <div class="group-title first">Autofinancement du poste CDI</div>
+        <div class="line"><span class="k">Coût total du CDI / an</span><span class="v num" id="d-cdi2">35 720&nbsp;€</span></div>
+        <div class="line"><span class="k">− Économie ménage (heures reprises)</span><span class="v num" id="d-ecomen">− 12 150&nbsp;€</span></div>
+        <div class="line"><span class="k">= Reste à financer par le commercial</span><span class="v num" id="d-reste">23 570&nbsp;€</span></div>
+        <div class="line"><span class="k">Contribution nette par logement</span><span class="v num" id="d-contrib">1 193&nbsp;€</span></div>
+        <div class="line"><span class="k">→ Logements nets à signer</span><span class="v num" id="d-logautofin">20 logts</span></div>
+        <div class="group-title">Bascule ménage : CDI vs prestataire</div>
+        <div class="line"><span class="k">Heures de ménage totales du parc</span><span class="v num" id="d-htot">1260 h</span></div>
+        <div class="line"><span class="k">Heures faites par le CDI</span><span class="v num" id="d-hcdi">450 h</span></div>
+        <div class="line"><span class="k">Économie prestataire correspondante</span><span class="v num" id="d-ecoprest">12 150&nbsp;€</span></div>
+        <div id="d-comalert"><div class="alert ok"><span class="dot">✓</span><span>25 h/sem restantes pour le commercial et l'opérationnel.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CHIFFRE D'AFFAIRES ================= -->
+  <section class="tab" id="tab-ca">
+    <div class="grid">
+      <div class="panel">
+        <h2>Revenu par logement</h2>
+        <p class="note">Valeurs par défaut tirées de ton bilan (moyennes annualisées, hors contrats arrêtés).</p>
+        <div class="ctrl">
+          <div class="top"><label>Gestion — marge nette / logement / an</label><span class="val num" id="l-gestionParLog">1 150&nbsp;€</span></div>
+          <input type="range" id="gestionParLog" min="700" max="2000" step="25" value="1150" style="--fill: 34.61538461538461%;">
+        </div>
+        <div class="ctrl">
+          <div class="top"><label>Ménage facturé / logement / an</label><span class="val num" id="l-menageRevParLog">550&nbsp;€</span></div>
+          <input type="range" id="menageRevParLog" min="0" max="1200" step="25" value="550" style="--fill: 45.83333333333333%;">
+        </div>
+        <div class="ctrl">
+          <div class="top"><label>Linge facturé / logement / an</label><span class="val num" id="l-lingeParLog">100&nbsp;€</span></div>
+          <input type="range" id="lingeParLog" min="0" max="500" step="10" value="100" style="--fill: 20%;">
+        </div>
+        <div class="ctrl">
+          <div class="top"><label>Coût du linge (% du linge facturé)</label><span class="val num" id="l-coutLingePct">40 %</span></div>
+          <input type="range" id="coutLingePct" min="0" max="80" step="5" value="40" style="--fill: 50%;">
+        </div>
+        <div class="alert info"><span class="dot">i</span><span id="ca-insight">Ton réalisé cette année : ~73 746&nbsp;€ de CA sur 49 biens (1 505&nbsp;€/logement), à faible remplissage. En montant en gamme et en occupation, tu vises plutôt 1 800&nbsp;€/logement.</span></div>
+      </div>
+
+      <div class="panel">
+        <h2>CA selon la taille du parc</h2>
+        <p class="note">La ligne bleue est ton réalisé de cette année (49 biens) ; la ligne ambre suit ta position.</p>
+        <div class="line"><span class="k">CA / logement (moyen)</span><span class="v num" id="ca-parlog">1 800&nbsp;€</span></div>
+        <table>
+          <thead><tr><th>Parc</th><th>Gestion</th><th>Ménage</th><th>Linge</th><th>CA total</th></tr></thead>
+          <tbody id="ca-body"><tr class="ref"><td class="name">Réalisé 49</td><td>45 568&nbsp;€</td><td>21 198&nbsp;€</td><td>6 980&nbsp;€</td><td>73 746&nbsp;€</td></tr><tr><td class="name">50 logts</td><td>57 500&nbsp;€</td><td>27 500&nbsp;€</td><td>5 000&nbsp;€</td><td>90 000&nbsp;€</td></tr><tr class="live"><td class="name">60 logts</td><td>69 000&nbsp;€</td><td>33 000&nbsp;€</td><td>6 000&nbsp;€</td><td>108 000&nbsp;€</td></tr><tr><td class="name">70 logts</td><td>80 500&nbsp;€</td><td>38 500&nbsp;€</td><td>7 000&nbsp;€</td><td>126 000&nbsp;€</td></tr><tr><td class="name">80 logts</td><td>92 000&nbsp;€</td><td>44 000&nbsp;€</td><td>8 000&nbsp;€</td><td>144 000&nbsp;€</td></tr></tbody>
+        </table>
+        <div class="alert info" style="margin-top:14px"><span class="dot">i</span><span id="ca-target">Pour viser 150 000 € de CA, il te faut ~84 logements au niveau de revenu/logement actuel — ou un meilleur remplissage par bien.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MÉNAGE & CDI ================= -->
+  <section class="tab" id="tab-menage">
+    <div class="grid">
+      <div class="panel">
+        <h2>Volume de ménage</h2>
+        <p class="note">Moyenne réelle : ~12 ménages/logement/an (578 sur 49 biens).</p>
+        <div class="ctrl"><div class="top"><label>Ménages moyens / logement / an</label><span class="val num" id="l-menagesParLog">14</span></div><input type="range" id="menagesParLog" min="8" max="20" step="1" value="14" style="--fill: 50%;"></div>
+        <div class="ctrl"><div class="top"><label>Durée moyenne d'un ménage</label><span class="val num" id="l-dureeMenage">1,50 h</span></div><input type="range" id="dureeMenage" min="1" max="3" step="0.25" value="1.5" style="--fill: 25%;"></div>
+        <div class="ctrl"><div class="top"><label>Taux prestataire facturé</label><span class="val num" id="l-tauxPrest">27 €/h</span></div><input type="range" id="tauxPrest" min="20" max="40" step="1" value="27" style="--fill: 35%;"></div>
+        <div class="ctrl"><div class="top"><label>Heures de ménage faites par le CDI</label><span class="val num" id="l-hCDImenage">450 h</span></div><input type="range" id="hCDImenage" min="0" max="1600" step="50" value="450" style="--fill: 28.125%;"></div>
+        <div class="ctrl"><div class="top"><label>Semaines travaillées / an (CDI)</label><span class="val num" id="l-semaines">45 sem.</span></div><input type="range" id="semaines" min="42" max="47" step="1" value="45" style="--fill: 60%;"></div>
+        <div class="group-title">Répartition ménage</div>
+        <div class="line"><span class="k">Heures totales du parc</span><span class="v num" id="m-htot">1260 h</span></div>
+        <div class="line"><span class="k">Dont CDI</span><span class="v num" id="m-hcdi">450 h</span></div>
+        <div class="line"><span class="k">Dont prestataire (30 €/h)</span><span class="v num" id="m-hprest">810 h</span></div>
+        <div class="line"><span class="k">Coût prestataire / an</span><span class="v num" id="m-coutprest">21 870&nbsp;€</span></div>
+        <div class="line"><span class="k">Temps CDI restant (commercial + ops)</span><span class="v num" id="m-hcom">1125 h (25 h/sem)</span></div>
+        <div id="m-alert"><div class="alert ok"><span class="dot">✓</span><span>Le CDI garde 25 h/sem pour prospecter — équilibre sain entre ménage et commercial.</span></div></div>
+      </div>
+
+      <div class="panel">
+        <h2>Coût réel du CDI</h2>
+        <p class="note">Passage net → brut → coût employeur chargé, plus avantages. Taux à ajuster avec ton comptable.</p>
+        <div class="ctrl"><div class="top"><label>Salaire NET mensuel</label><span class="val num" id="l-cdiNet">1 700&nbsp;€ /mois</span></div><input type="range" id="cdiNet" min="1400" max="2800" step="50" value="1700" style="--fill: 21.428571428571427%;"></div>
+        <div class="ctrl"><div class="top"><label>Coefficient net → brut</label><span class="val num" id="l-tauxBrut">× 1,28</span></div><input type="range" id="tauxBrut" min="1.20" max="1.40" step="0.01" value="1.28" style="--fill: 40.00000000000005%;"></div>
+        <div class="ctrl"><div class="top"><label>Charges patronales (% du brut)</label><span class="val num" id="l-tauxPatronal">25 %</span></div><input type="range" id="tauxPatronal" min="15" max="45" step="1" value="25" style="--fill: 33.33333333333333%;"></div>
+        <div class="group-title">Avantages &amp; extras (mensuel, sauf prime)</div>
+        <div class="num-field"><label>Téléphone dédié CDI</label><div><input type="number" id="cdiPhone" value="30"><span class="sfx"> €/mois</span></div></div>
+        <div class="num-field"><label>Mutuelle (part employeur)</label><div><input type="number" id="cdiMutuelle" value="40"><span class="sfx"> €/mois</span></div></div>
+        <div class="num-field"><label>Assurance / prévoyance</label><div><input type="number" id="cdiAssurance" value="20"><span class="sfx"> €/mois</span></div></div>
+        <div class="num-field"><label>Avantage en nature (véhicule…)</label><div><input type="number" id="cdiAvNature" value="0"><span class="sfx"> €/mois</span></div></div>
+        <div class="num-field"><label>Prime variable annuelle</label><div><input type="number" id="cdiPrime" value="2000"><span class="sfx"> €/an</span></div></div>
+        <div class="group-title">Récapitulatif coût CDI</div>
+        <div class="line"><span class="k">Brut mensuel</span><span class="v num" id="c-brut">2 176&nbsp;€ /mois</span></div>
+        <div class="line"><span class="k">Coût employeur mensuel</span><span class="v num" id="c-empmois">2 720&nbsp;€ /mois</span></div>
+        <div class="line"><span class="k">Salaire chargé / an</span><span class="v num" id="c-salann">32 640&nbsp;€</span></div>
+        <div class="line"><span class="k">Avantages &amp; prime / an</span><span class="v num" id="c-avann">3 080&nbsp;€</span></div>
+        <div class="line total"><span class="k">Coût total CDI / an</span><span class="v num" id="c-total">35 720&nbsp;€</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CHARGES & IMPÔTS ================= -->
+  <section class="tab" id="tab-charges">
+    <div class="panel">
+      <h2>Charges fixes &amp; récurrentes 2027</h2>
+      <p class="note">Chaque ligne est modifiable. Montants en HT. La ligne « cotisations gérant » est une estimation TNS — supprime-la si elle est déjà comptée ailleurs.</p>
+      <table class="chg-table">
+        <thead><tr><th>Libellé</th><th>Montant HT</th><th>Fréq.</th><th>TVA</th><th style="text-align:right">Annuel HT</th><th></th></tr></thead>
+        <tbody id="chg-body"><tr><td><input type="text" value="Salaire gérant (net)" data-i="0" data-k="lib"></td><td style="width:110px"><input type="number" value="1000" data-i="0" data-k="ht"></td><td><select data-i="0" data-k="freq"><option value="m" selected="selected">Mens.</option><option value="a">Ann.</option></select></td><td><select data-i="0" data-k="tva"><option value="0" selected="selected">0%</option><option value="10">10%</option><option value="20">20%</option></select></td><td style="text-align:right;font-family:Space Grotesk;font-weight:600">12 000&nbsp;€</td><td style="text-align:center"><button class="chg-del" data-del="0">✕</button></td></tr><tr><td><input type="text" value="Superhote" data-i="1" data-k="lib"></td><td style="width:110px"><input type="number" value="420" data-i="1" data-k="ht"></td><td><select data-i="1" data-k="freq"><option value="m" selected="selected">Mens.</option><option value="a">Ann.</option></select></td><td><select data-i="1" data-k="tva"><option value="0">0%</option><option value="10">10%</option><option value="20" selected="selected">20%</option></select></td><td style="text-align:right;font-family:Space Grotesk;font-weight:600">5 040&nbsp;€</td><td style="text-align:center"><button class="chg-del" data-del="1">✕</button></td></tr><tr><td><input type="text" value="Pricelabs" data-i="2" data-k="lib"></td><td style="width:110px"><input type="number" value="250" data-i="2" data-k="ht"></td><td><select data-i="2" data-k="freq"><option value="m" selected="selected">Mens.</option><option value="a">Ann.</option></select></td><td><select data-i="2" data-k="tva"><option value="0">0%</option><option value="10">10%</option><option value="20" selected="selected">20%</option></select></td><td style="text-align:right;font-family:Space Grotesk;font-weight:600">3 000&nbsp;€</td><td style="text-align:center"><button class="chg-del" data-del="2">✕</button></td></tr><tr><td><input type="text" value="Bureau Weforge" data-i="3" data-k="lib"></td><td style="width:110px"><input type="number" value="240" data-i="3" data-k="ht"></td><td><select data-i="3" data-k="freq"><option value="m" selected="selected">Mens.</option><option value="a">Ann.</option></select></td><td><select data-i="3" data-k="tva"><option value="0">0%</option><option value="10">10%</option><option value="20" selected="selected">20%</option></select></td><td style="text-align:right;font-family:Space Grotesk;font-weight:600">2 880&nbsp;€</td><td style="text-align:center"><button class="chg-del" data-del="3">✕</button></td></tr><tr><td><input type="text" value="Comptabilité Adecia" data-i="4" data-k="lib"></td><td style="width:110px"><input type="number" value="188" data-i="4" data-k="ht"></td><td><select data-i="4" data-k="freq"><option value="m" selected="selected">Mens.</option><option value="a">Ann.</option></select></td><td><select data-i="4" data-k="tva"><option value="0">0%</option><option value="10">10%</option><option value="20" selected="selected">20%</option></select></td><td style="text-align:right;font-family:Space Grotesk;font-weight:600">2 256&nbsp;€</td><td style="text-align:center"><button class="chg-del" data-del="4">✕</button></td></tr><tr><td><input type="text" value="Garage Barranger" data-i="5" data-k="lib"></td><td style="width:110px"><input type="number" value="120" data-i="5" data-k="ht"></td><td><select data-i="5" data-k="freq"><option value="m" selected="selected">Mens.</option><option value="a">Ann.</option></select></td><td><select data-i="5" data-k="tva"><option value="0" selected="selected">0%</option><option value="10">10%</option><option value="20">20%</option></select></td><td style="text-align:right;font-family:Space Grotesk;font-weight:600">1 440&nbsp;€</td><td style="text-align:center"><button class="chg-del" data-del="5">✕</button></td></tr><tr><td><input type="text" value="Axonaut — factures" data-i="6" data-k="lib"></td><td style="width:110px"><input type="number" value="45" data-i="6" data-k="ht"></td><td><select data-i="6" data-k="freq"><option value="m" selected="selected">Mens.</option><option value="a">Ann.</option></select></td><td><select data-i="6" data-k="tva"><option value="0">0%</option><option value="10">10%</option><option value="20" selected="selected">20%</option></select></td><td style="text-align:right;font-family:Space Grotesk;font-weight:600">540&nbsp;€</td><td style="text-align:center"><button class="chg-del" data-del="6">✕</button></td></tr><tr><td><input type="text" value="SFR — téléphone" data-i="7" data-k="lib"></td><td style="width:110px"><input type="number" value="29" data-i="7" data-k="ht"></td><td><select data-i="7" data-k="freq"><option value="m" selected="selected">Mens.</option><option value="a">Ann.</option></select></td><td><select data-i="7" data-k="tva"><option value="0">0%</option><option value="10">10%</option><option value="20" selected="selected">20%</option></select></td><td style="text-align:right;font-family:Space Grotesk;font-weight:600">348&nbsp;€</td><td style="text-align:center"><button class="chg-del" data-del="7">✕</button></td></tr><tr><td><input type="text" value="Assurance pro" data-i="8" data-k="lib"></td><td style="width:110px"><input type="number" value="152" data-i="8" data-k="ht"></td><td><select data-i="8" data-k="freq"><option value="m">Mens.</option><option value="a" selected="selected">Ann.</option></select></td><td><select data-i="8" data-k="tva"><option value="0" selected="selected">0%</option><option value="10">10%</option><option value="20">20%</option></select></td><td style="text-align:right;font-family:Space Grotesk;font-weight:600">152&nbsp;€</td><td style="text-align:center"><button class="chg-del" data-del="8">✕</button></td></tr><tr><td><input type="text" value="Lemonade — garage" data-i="9" data-k="lib"></td><td style="width:110px"><input type="number" value="7.75" data-i="9" data-k="ht"></td><td><select data-i="9" data-k="freq"><option value="m" selected="selected">Mens.</option><option value="a">Ann.</option></select></td><td><select data-i="9" data-k="tva"><option value="0" selected="selected">0%</option><option value="10">10%</option><option value="20">20%</option></select></td><td style="text-align:right;font-family:Space Grotesk;font-weight:600">93&nbsp;€</td><td style="text-align:center"><button class="chg-del" data-del="9">✕</button></td></tr><tr><td><input type="text" value="Cotisations gérant (TNS est.)" data-i="10" data-k="lib"></td><td style="width:110px"><input type="number" value="450" data-i="10" data-k="ht"></td><td><select data-i="10" data-k="freq"><option value="m" selected="selected">Mens.</option><option value="a">Ann.</option></select></td><td><select data-i="10" data-k="tva"><option value="0" selected="selected">0%</option><option value="10">10%</option><option value="20">20%</option></select></td><td style="text-align:right;font-family:Space Grotesk;font-weight:600">5 400&nbsp;€</td><td style="text-align:center"><button class="chg-del" data-del="10">✕</button></td></tr></tbody>
+      </table>
+      <button class="btn" id="chg-add">+ Ajouter une charge</button>
+      <div class="group-title">Totaux</div>
+      <div class="line"><span class="k">Total charges fixes / an (HT)</span><span class="v num" id="cf-ann">33 149&nbsp;€</span></div>
+      <div class="line"><span class="k">TVA déductible sur charges / an</span><span class="v num" id="cf-tva">2 813&nbsp;€</span></div>
+    </div>
+
+    <div class="panel">
+      <h2>Impôts &amp; taxes</h2>
+      <p class="note">Estimations. Ton EURL est à l'IR par défaut ; bascule sur IS si tu as opté. À confirmer avec Adecia.</p>
+      <div class="num-field"><label>Régime fiscal</label><span class="seg"><select id="regime"><option value="IS" selected="selected">IS — impôt sur les sociétés</option><option value="IR">IR — impôt sur le revenu</option></select></span></div>
+      <div class="num-field"><label>Taux de TVA appliqué au CA</label><div><input type="number" id="tvaTaux" value="20"><span class="sfx"> %</span></div></div>
+      <div class="group-title">Si IS</div>
+      <div class="num-field"><label>Taux réduit</label><div><input type="number" id="isTauxBas" value="15"><span class="sfx"> %</span></div></div>
+      <div class="num-field"><label>Seuil du taux réduit</label><div><input type="number" id="isSeuil" value="42500"><span class="sfx"> €</span></div></div>
+      <div class="num-field"><label>Taux normal (au-delà)</label><div><input type="number" id="isTauxHaut" value="25"><span class="sfx"> %</span></div></div>
+      <div class="group-title">Si IR</div>
+      <div class="num-field"><label>Taux marginal d'imposition estimé</label><div><input type="number" id="tauxIR" value="30"><span class="sfx"> %</span></div></div>
+      <div class="group-title">Résultat fiscal (au parc choisi)</div>
+      <div class="line"><span class="k">TVA collectée sur le CA</span><span class="v num" id="t-coll">21 600&nbsp;€</span></div>
+      <div class="line"><span class="k">TVA déductible</span><span class="v num" id="t-ded">2 813&nbsp;€</span></div>
+      <div class="line"><span class="k">TVA à reverser</span><span class="v num" id="t-rev">18 787&nbsp;€</span></div>
+      <div class="line"><span class="k">Bénéfice avant impôt</span><span class="v num pos" id="t-benef">14 861&nbsp;€</span></div>
+      <div class="line total"><span class="k">Impôt sur le bénéfice</span><span class="v num" id="t-impot">2 229&nbsp;€</span></div>
+      <div class="alert info" style="margin-top:12px"><span class="dot">i</span><span>La TVA à reverser n'est pas une charge : c'est la TVA de tes clients que tu collectes puis reverses. Elle pèse sur ta trésorerie, pas sur ton résultat.</span></div>
+    </div>
+  </section>
+
+  <!-- ================= TRÉSORERIE ================= -->
+  <section class="tab active" id="tab-tresorerie">
+    <div class="panel">
+      <h2>Plan de trésorerie — sept. 2026 → sept. 2028</h2>
+      <p class="note">Vision « comptes séparés » : le compte courant est ton argent réellement disponible ; les comptes TVA et impôts/cotisations isolent ce que tu dois. Les champs en rouge sont à confirmer avec ta comptable.</p>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="lbl">Dispo réel aujourd'hui (courant)</div><div class="big num" id="k-dispo">46 000&nbsp;€</div><div class="hint" id="k-dispo-h">sur 63 000&nbsp;€ au total</div></div>
+      <div class="kpi"><div class="lbl">Point bas du compte courant</div><div class="big num pos" id="k-bas">17 095&nbsp;€</div><div class="hint" id="k-bas-h">atteint en Jun 27</div></div>
+      <div class="kpi"><div class="lbl">Courant fin 2026 (après provisions)</div><div class="big num pos" id="k-fin26">31 380&nbsp;€</div><div class="hint">au 31 déc. 2026</div></div>
+      <div class="kpi"><div class="lbl">Verdict embauche cet hiver</div><div class="big num neg" id="k-cdi">Risqué</div><div class="hint" id="k-cdi-h">trésorerie négative (-52 640&nbsp;€)</div></div>
+    </div>
+    <div class="tgrid">
+      <div>
+        <div class="panel">
+          <h2>Point de départ (1er sept. 2026)</h2>
+          <p class="note">Ton solde bancaire, et ce qui est déjà dû dessus.</p>
+          <div class="nf"><label>Solde bancaire total</label><div class="box"><input type="number" id="solde" value="63000"><span class="sfx">€</span></div></div>
+          <div class="nf hot"><label>TVA collectée non reversée <span class="flag">à confirmer</span></label><div class="box"><input type="number" id="tvaDue0" value="8000"><span class="sfx">€</span></div></div>
+          <div class="nf hot"><label>Cotisations dues non payées <span class="flag">à confirmer</span></label><div class="box"><input type="number" id="cotisDue0" value="4000"><span class="sfx">€</span></div></div>
+          <div class="nf hot"><label>IR à provisionner 2026 <span class="flag">à confirmer</span></label><div class="box"><input type="number" id="irDue0" value="5000"><span class="sfx">€</span></div></div>
+        </div>
+        <div class="panel">
+          <h2>Chiffre d'affaires (HT)</h2>
+          <p class="note">CA annuel par exercice, réparti selon la saisonnalité.</p>
+          <div class="nf"><label>CA 2026 (réalisé)</label><div class="box"><input type="number" id="ca26" value="76000"><span class="sfx">€</span></div></div>
+          <div class="nf"><label>CA 2027 (objectif)</label><div class="box"><input type="number" id="ca27" value="110000"><span class="sfx">€</span></div></div>
+          <div class="nf"><label>CA 2028 (objectif)</label><div class="box"><input type="number" id="ca28" value="150000"><span class="sfx">€</span></div></div>
+          <div class="group-title">Saisonnalité (% du CA / mois)</div>
+          <div class="weights" id="weights"><div class="wcell"><span>Jan</span><input type="number" step="0.5" value="2" data-w="0"></div><div class="wcell"><span>Fév</span><input type="number" step="0.5" value="3" data-w="1"></div><div class="wcell"><span>Mar</span><input type="number" step="0.5" value="4" data-w="2"></div><div class="wcell"><span>Avr</span><input type="number" step="0.5" value="4" data-w="3"></div><div class="wcell"><span>Mai</span><input type="number" step="0.5" value="4" data-w="4"></div><div class="wcell"><span>Jun</span><input type="number" step="0.5" value="6" data-w="5"></div><div class="wcell"><span>Jul</span><input type="number" step="0.5" value="30" data-w="6"></div><div class="wcell"><span>Aoû</span><input type="number" step="0.5" value="38" data-w="7"></div><div class="wcell"><span>Sep</span><input type="number" step="0.5" value="4" data-w="8"></div><div class="wcell"><span>Oct</span><input type="number" step="0.5" value="3" data-w="9"></div><div class="wcell"><span>Nov</span><input type="number" step="0.5" value="2" data-w="10"></div><div class="wcell"><span>Déc</span><input type="number" step="0.5" value="1" data-w="11"></div></div>
+        </div>
+        <div class="panel">
+          <h2>Charges &amp; personnel</h2>
+          <div class="nf"><label>Coûts variables (% du CA)</label><div class="box"><input type="number" id="varPct" value="45"><span class="sfx">%</span></div></div>
+          <div class="nf"><label>Charges fixes hors salaires</label><div class="box"><input type="number" id="fixe" value="2750"><span class="sfx">€/m</span></div></div>
+          <div class="group-title">Gérant (toi)</div>
+          <div class="nf"><label>Rémunération nette</label><div class="box"><input type="number" id="gerantNet" value="1000"><span class="sfx">€/m</span></div></div>
+          <div class="nf"><label>Cotisations TNS (% du net)</label><div class="box"><input type="number" id="tnsRate" value="45"><span class="sfx">%</span></div></div>
+          <div class="group-title">Saisonnières (étés 2027 &amp; 2028)</div>
+          <div class="nf"><label>Nombre</label><div class="box"><input type="number" id="nbSaison" value="5"><span class="sfx"></span></div></div>
+          <div class="nf"><label>Net mensuel / pers.</label><div class="box"><input type="number" id="saisonEach" value="600"><span class="sfx">€/m</span></div></div>
+          <div class="nf"><label>Charges patronales (% du net)</label><div class="box"><input type="number" id="empRate" value="25"><span class="sfx">%</span></div></div>
+        </div>
+        <div class="panel">
+          <h2>Impôts &amp; échéances</h2>
+          <div class="nf"><label>Taux de TVA</label><div class="box"><input type="number" id="tvaRate" value="20"><span class="sfx">%</span></div></div>
+          <div class="nf"><label>TVA déductible / mois</label><div class="box"><input type="number" id="tvaDed" value="600"><span class="sfx">€</span></div></div>
+          <div class="nf"><label>IR annuel estimé <span class="flag">à confirmer</span></label><div class="box"><input type="number" id="irAnnuel" value="6000"><span class="sfx">€</span></div></div>
+          <div class="nf"><label>Reversement TVA</label><div class="box"><select id="tvaFreq"><option value="1">Mensuel</option><option value="3" selected="selected">Trimestriel</option></select></div></div>
+          <div class="nf"><label>Paiement cotis./IR</label><div class="box"><select id="taxFreq"><option value="1">Mensuel</option><option value="3" selected="selected">Trimestriel</option></select></div></div>
+        </div>
+        <div class="panel">
+          <h2>Scénario : salarié cet hiver</h2>
+          <p class="note">Teste l'impact d'un CDI sur ta trésorerie.</p>
+          <div class="toggle-row"><input type="checkbox" id="cdiOn"><label for="cdiOn" style="font-weight:500;font-size:.9rem">Ajouter un salarié</label></div>
+          <div class="nf"><label>Coût employeur total</label><div class="box"><input type="number" id="cdiCost" value="3600"><span class="sfx">€/m</span></div></div>
+          <div class="nf"><label>Démarrage</label><div class="box"><select id="cdiStart"><option value="0">Sep 26</option><option value="1">Oct 26</option><option value="2" selected="selected">Nov 26</option><option value="3">Déc 26</option><option value="4">Jan 27</option><option value="5">Fév 27</option><option value="6">Mar 27</option><option value="7">Avr 27</option><option value="8">Mai 27</option><option value="9">Jun 27</option><option value="10">Jul 27</option><option value="11">Aoû 27</option><option value="12">Sep 27</option><option value="13">Oct 27</option><option value="14">Nov 27</option><option value="15">Déc 27</option><option value="16">Jan 28</option><option value="17">Fév 28</option><option value="18">Mar 28</option><option value="19">Avr 28</option><option value="20">Mai 28</option><option value="21">Jun 28</option><option value="22">Jul 28</option><option value="23">Aoû 28</option></select></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="panel">
+          <h2>Trajectoire des comptes</h2>
+          <p class="note">Le total (pointillé) est ce que ta banque affiche ; le courant (bleu) est ton argent vraiment libre. L'écart, c'est ce que tu dois.</p>
+          <div class="legend">
+            <span><i class="swatch" style="background:var(--marine)"></i>Compte courant</span>
+            <span><i class="swatch" style="background:var(--amber)"></i>Compte TVA</span>
+            <span><i class="swatch" style="background:#7A4F9E"></i>Impôts &amp; cotisations</span>
+            <span><i class="swatch" style="border-top:2px dashed var(--ink);height:0"></i>Total banque</span>
+          </div>
+          <div id="chart"><svg viewBox="0 0 700 300" style="width:100%;height:auto;margin-top:8px"><line x1="58" y1="253.69950050487446" x2="688" y2="253.69950050487446" stroke="#152229" stroke-width="1.3"></line><text x="52" y="256.69950050487444" text-anchor="end" font-size="9" fill="#93A0A6" font-family="Space Grotesk">-0&nbsp;€</text><line x1="58" y1="180.29377754815917" x2="688" y2="180.29377754815917" stroke="#E4E7E3" stroke-width="1"></line><text x="52" y="183.29377754815917" text-anchor="end" font-size="9" fill="#93A0A6" font-family="Space Grotesk">20 000&nbsp;€</text><line x1="58" y1="106.88805459144388" x2="688" y2="106.88805459144388" stroke="#E4E7E3" stroke-width="1"></line><text x="52" y="109.88805459144388" text-anchor="end" font-size="9" fill="#93A0A6" font-family="Space Grotesk">40 000&nbsp;€</text><line x1="58" y1="33.48233163472858" x2="688" y2="33.48233163472858" stroke="#E4E7E3" stroke-width="1"></line><text x="52" y="36.48233163472858" text-anchor="end" font-size="9" fill="#93A0A6" font-family="Space Grotesk">60 000&nbsp;€</text><text x="58" y="292" text-anchor="middle" font-size="9" fill="#93A0A6" font-family="Space Grotesk">Sep 26</text><text x="140.17391304347825" y="292" text-anchor="middle" font-size="9" fill="#93A0A6" font-family="Space Grotesk">Déc 26</text><text x="222.34782608695653" y="292" text-anchor="middle" font-size="9" fill="#93A0A6" font-family="Space Grotesk">Mar 27</text><text x="304.52173913043475" y="292" text-anchor="middle" font-size="9" fill="#93A0A6" font-family="Space Grotesk">Jun 27</text><text x="386.69565217391306" y="292" text-anchor="middle" font-size="9" fill="#93A0A6" font-family="Space Grotesk">Sep 27</text><text x="468.8695652173913" y="292" text-anchor="middle" font-size="9" fill="#93A0A6" font-family="Space Grotesk">Déc 27</text><text x="551.0434782608695" y="292" text-anchor="middle" font-size="9" fill="#93A0A6" font-family="Space Grotesk">Mar 28</text><text x="633.2173913043479" y="292" text-anchor="middle" font-size="9" fill="#93A0A6" font-family="Space Grotesk">Jun 28</text><path d="M58.0 30.1 L85.4 39.8 L112.8 122.8 L140.2 136.7 L167.6 146.6 L195.0 163.9 L222.3 167.8 L249.7 171.6 L277.1 187.0 L304.5 184.8 L331.9 121.0 L359.3 102.0 L386.7 105.8 L414.1 112.7 L441.5 133.8 L468.9 146.7 L496.3 154.4 L523.7 168.4 L551.0 167.9 L578.4 167.3 L605.8 183.6 L633.2 174.8 L660.6 77.9 L688.0 38.8" fill="none" stroke="#152229" stroke-width="2.2" stroke-dasharray="5 4"></path><path d="M58.0 217.2 L85.4 213.7 L112.8 253.7 L140.2 250.2 L167.6 246.7 L195.0 253.7 L222.3 250.2 L249.7 246.7 L277.1 253.7 L304.5 250.2 L331.9 244.0 L359.3 253.7 L386.7 250.2 L414.1 246.7 L441.5 253.7 L468.9 250.2 L496.3 246.7 L523.7 253.7 L551.0 250.2 L578.4 246.7 L605.8 253.7 L633.2 250.2 L660.6 244.0 L688.0 253.7" fill="none" stroke="#7A4F9E" stroke-width="2.2"></path><path d="M58.0 224.3 L85.4 224.8 L112.8 253.7 L140.2 255.3 L167.6 255.9 L195.0 255.7 L222.3 254.7 L249.7 253.7 L277.1 253.7 L304.5 251.1 L331.9 229.0 L359.3 253.7 L386.7 252.7 L414.1 252.5 L441.5 253.7 L468.9 255.1 L496.3 255.1 L523.7 254.0 L551.0 251.8 L578.4 249.6 L605.8 253.7 L633.2 249.3 L660.6 218.5 L688.0 253.7" fill="none" stroke="#CF9233" stroke-width="2.2"></path><path d="M58.0 96.0 L85.4 108.6 L112.8 122.8 L140.2 138.5 L167.6 151.3 L195.0 161.9 L222.3 170.3 L249.7 178.7 L277.1 187.0 L304.5 191.0 L331.9 155.4 L359.3 102.0 L386.7 110.4 L414.1 120.9 L441.5 133.8 L468.9 148.8 L496.3 160.0 L523.7 168.1 L551.0 173.3 L578.4 178.4 L605.8 183.6 L633.2 182.6 L660.6 122.8 L688.0 38.8 L688 274 L58 274 Z" fill="#0F5C6B" opacity="0.06"></path><path d="M58.0 96.0 L85.4 108.6 L112.8 122.8 L140.2 138.5 L167.6 151.3 L195.0 161.9 L222.3 170.3 L249.7 178.7 L277.1 187.0 L304.5 191.0 L331.9 155.4 L359.3 102.0 L386.7 110.4 L414.1 120.9 L441.5 133.8 L468.9 148.8 L496.3 160.0 L523.7 168.1 L551.0 173.3 L578.4 178.4 L605.8 183.6 L633.2 182.6 L660.6 122.8 L688.0 38.8" fill="none" stroke="#0F5C6B" stroke-width="2.2"></path></svg></div>
+          <div id="chart-alert"><div class="alert ok"><span class="dot">✓</span><span>Le compte courant ne descend jamais sous 17 095&nbsp;€ (Jun 27).</span></div></div>
+        </div>
+        <div class="panel">
+          <h2>Détail mois par mois</h2>
+          <p class="note">Encaissements, décaissements et solde des trois comptes.</p>
+          <div class="tscroll">
+            <table class="ttable">
+              <thead><tr><th>Mois</th><th>Encaiss. HT</th><th>Sorties expl.</th><th>Provisions</th><th>Courant</th><th>TVA</th><th>Impôts/cotis</th><th>Total</th></tr></thead>
+              <tbody id="tbody"><tr><td>Sep 26</td><td>3 040&nbsp;€</td><td class="neg">−5 118&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">42 972&nbsp;€</td><td>8 008&nbsp;€</td><td>9 950&nbsp;€</td><td>60 930&nbsp;€</td></tr><tr><td>Oct 26</td><td>2 280&nbsp;€</td><td class="neg">−4 776&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">39 526&nbsp;€</td><td>7 864&nbsp;€</td><td>10 900&nbsp;€</td><td>58 290&nbsp;€</td></tr><tr><td>Nov 26</td><td>1 520&nbsp;€</td><td class="neg">−4 434&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">35 662&nbsp;€</td><td>0&nbsp;€</td><td>0&nbsp;€</td><td>35 662&nbsp;€</td></tr><tr><td>Déc 26</td><td>760&nbsp;€</td><td class="neg">−4 092&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">31 380&nbsp;€</td><td>-448&nbsp;€</td><td>950&nbsp;€</td><td>31 882&nbsp;€</td></tr><tr><td>Jan 27</td><td>2 200&nbsp;€</td><td class="neg">−4 740&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">27 890&nbsp;€</td><td>-608&nbsp;€</td><td>1 900&nbsp;€</td><td>29 182&nbsp;€</td></tr><tr><td>Fév 27</td><td>3 300&nbsp;€</td><td class="neg">−5 235&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">25 005&nbsp;€</td><td>-548&nbsp;€</td><td>0&nbsp;€</td><td>24 457&nbsp;€</td></tr><tr><td>Mar 27</td><td>4 400&nbsp;€</td><td class="neg">−5 730&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">22 725&nbsp;€</td><td>-268&nbsp;€</td><td>950&nbsp;€</td><td>23 407&nbsp;€</td></tr><tr><td>Avr 27</td><td>4 400&nbsp;€</td><td class="neg">−5 730&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">20 445&nbsp;€</td><td>12&nbsp;€</td><td>1 900&nbsp;€</td><td>22 357&nbsp;€</td></tr><tr><td>Mai 27</td><td>4 400&nbsp;€</td><td class="neg">−5 730&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">18 165&nbsp;€</td><td>0&nbsp;€</td><td>0&nbsp;€</td><td>18 165&nbsp;€</td></tr><tr><td>Jun 27</td><td>6 600&nbsp;€</td><td class="neg">−6 720&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">17 095&nbsp;€</td><td>720&nbsp;€</td><td>950&nbsp;€</td><td>18 765&nbsp;€</td></tr><tr class="summer"><td>Jul 27</td><td>33 000&nbsp;€</td><td class="neg">−21 600&nbsp;€</td><td class="neg">−1 700&nbsp;€</td><td class="pos">26 795&nbsp;€</td><td>6 720&nbsp;€</td><td>2 650&nbsp;€</td><td>36 165&nbsp;€</td></tr><tr class="summer"><td>Aoû 27</td><td>41 800&nbsp;€</td><td class="neg">−25 560&nbsp;€</td><td class="neg">−1 700&nbsp;€</td><td class="pos">41 335&nbsp;€</td><td>0&nbsp;€</td><td>0&nbsp;€</td><td>41 335&nbsp;€</td></tr><tr><td>Sep 27</td><td>4 400&nbsp;€</td><td class="neg">−5 730&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">39 055&nbsp;€</td><td>280&nbsp;€</td><td>950&nbsp;€</td><td>40 285&nbsp;€</td></tr><tr><td>Oct 27</td><td>3 300&nbsp;€</td><td class="neg">−5 235&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">36 170&nbsp;€</td><td>340&nbsp;€</td><td>1 900&nbsp;€</td><td>38 410&nbsp;€</td></tr><tr><td>Nov 27</td><td>2 200&nbsp;€</td><td class="neg">−4 740&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">32 680&nbsp;€</td><td>0&nbsp;€</td><td>0&nbsp;€</td><td>32 680&nbsp;€</td></tr><tr><td>Déc 27</td><td>1 100&nbsp;€</td><td class="neg">−4 245&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">28 585&nbsp;€</td><td>-380&nbsp;€</td><td>950&nbsp;€</td><td>29 155&nbsp;€</td></tr><tr><td>Jan 28</td><td>3 000&nbsp;€</td><td class="neg">−5 100&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">25 535&nbsp;€</td><td>-380&nbsp;€</td><td>1 900&nbsp;€</td><td>27 055&nbsp;€</td></tr><tr><td>Fév 28</td><td>4 500&nbsp;€</td><td class="neg">−5 775&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">23 310&nbsp;€</td><td>-80&nbsp;€</td><td>0&nbsp;€</td><td>23 230&nbsp;€</td></tr><tr><td>Mar 28</td><td>6 000&nbsp;€</td><td class="neg">−6 450&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">21 910&nbsp;€</td><td>520&nbsp;€</td><td>950&nbsp;€</td><td>23 380&nbsp;€</td></tr><tr><td>Avr 28</td><td>6 000&nbsp;€</td><td class="neg">−6 450&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">20 510&nbsp;€</td><td>1 120&nbsp;€</td><td>1 900&nbsp;€</td><td>23 530&nbsp;€</td></tr><tr><td>Mai 28</td><td>6 000&nbsp;€</td><td class="neg">−6 450&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">19 110&nbsp;€</td><td>0&nbsp;€</td><td>0&nbsp;€</td><td>19 110&nbsp;€</td></tr><tr><td>Jun 28</td><td>9 000&nbsp;€</td><td class="neg">−7 800&nbsp;€</td><td class="neg">−950&nbsp;€</td><td class="pos">19 360&nbsp;€</td><td>1 200&nbsp;€</td><td>950&nbsp;€</td><td>21 510&nbsp;€</td></tr><tr class="summer"><td>Jul 28</td><td>45 000&nbsp;€</td><td class="neg">−27 000&nbsp;€</td><td class="neg">−1 700&nbsp;€</td><td class="pos">35 660&nbsp;€</td><td>9 600&nbsp;€</td><td>2 650&nbsp;€</td><td>47 910&nbsp;€</td></tr><tr class="summer"><td>Aoû 28</td><td>57 000&nbsp;€</td><td class="neg">−32 400&nbsp;€</td><td class="neg">−1 700&nbsp;€</td><td class="pos">58 560&nbsp;€</td><td>0&nbsp;€</td><td>0&nbsp;€</td><td>58 560&nbsp;€</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Outil de pilotage interne Opti Conciergerie — hypothèses paramétrables. Les calculs fiscaux et sociaux sont des estimations, à faire valider par ton expert-comptable avant toute décision d'embauche.
+  </footer>
+</div>
+
+<script>
+const eur0=new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0});
+const f0=n=>eur0.format(Math.round(n));
+const val=id=>{const e=document.getElementById(id);return e?parseFloat(e.value)||0:0;};
+function fillTrack(inp){const mn=+inp.min,mx=+inp.max,v=+inp.value;inp.style.setProperty('--fill',((v-mn)/(mx-mn)*100)+'%');}
+function setV(id,txt){const l=document.getElementById(l_id(id));if(l)l.textContent=txt;const inp=document.getElementById(id);if(inp&&inp.type==='range')fillTrack(inp);}
+function l_id(id){return 'l-'+id;}
+function setLine(id,txt,cls){const e=document.getElementById(id);if(!e)return;e.textContent=txt;if(cls!==undefined)e.className='v num '+cls;}
+
+/* ---------- Charges fixes éditables ---------- */
+let charges=[{"lib":"Salaire gérant (net)","ht":1000,"freq":"m","tva":0},{"lib":"Superhote","ht":420,"freq":"m","tva":20},{"lib":"Pricelabs","ht":250,"freq":"m","tva":20},{"lib":"Bureau Weforge","ht":240,"freq":"m","tva":20},{"lib":"Comptabilité Adecia","ht":188,"freq":"m","tva":20},{"lib":"Garage Barranger","ht":120,"freq":"m","tva":0},{"lib":"Axonaut — factures","ht":45,"freq":"m","tva":20},{"lib":"SFR — téléphone","ht":29,"freq":"m","tva":20},{"lib":"Assurance pro","ht":152,"freq":"a","tva":0},{"lib":"Lemonade — garage","ht":7.75,"freq":"m","tva":0},{"lib":"Cotisations gérant (TNS est.)","ht":450,"freq":"m","tva":0}];
+const chgAnnual=c=>c.freq==='m'?c.ht*12:c.ht;
+const cfAnnHT=()=>charges.reduce((s,c)=>s+chgAnnual(c),0);
+const cfTVA=()=>charges.reduce((s,c)=>s+chgAnnual(c)*(c.tva/100),0);
+
+function renderCharges(){
+  const tb=document.getElementById('chg-body');tb.innerHTML='';
+  charges.forEach((c,i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=
+      '<td><input type="text" value="'+c.lib+'" data-i="'+i+'" data-k="lib"></td>'+
+      '<td style="width:110px"><input type="number" value="'+c.ht+'" data-i="'+i+'" data-k="ht"></td>'+
+      '<td><select data-i="'+i+'" data-k="freq"><option value="m"'+(c.freq==='m'?' selected':'')+'>Mens.</option><option value="a"'+(c.freq==='a'?' selected':'')+'>Ann.</option></select></td>'+
+      '<td><select data-i="'+i+'" data-k="tva"><option value="0"'+(c.tva==0?' selected':'')+'>0%</option><option value="10"'+(c.tva==10?' selected':'')+'>10%</option><option value="20"'+(c.tva==20?' selected':'')+'>20%</option></select></td>'+
+      '<td style="text-align:right;font-family:Space Grotesk;font-weight:600">'+f0(chgAnnual(c))+'</td>'+
+      '<td style="text-align:center"><button class="chg-del" data-del="'+i+'">✕</button></td>';
+    tb.appendChild(tr);
+  });
+  tb.querySelectorAll('input,select').forEach(el=>{
+    el.addEventListener('input',e=>{
+      const i=+e.target.dataset.i,k=e.target.dataset.k;
+      charges[i][k]=(k==='lib')?e.target.value:(k==='freq')?e.target.value:parseFloat(e.target.value)||0;
+      renderCharges();render();
+    });
+  });
+  tb.querySelectorAll('.chg-del').forEach(b=>b.addEventListener('click',e=>{charges.splice(+e.target.dataset.del,1);renderCharges();render();}));
+}
+document.getElementById('chg-add').addEventListener('click',()=>{charges.push({lib:'Nouvelle charge',ht:0,freq:'m',tva:20});renderCharges();render();});
+
+/* ---------- Moteur de calcul ---------- */
+function computeFor(n){
+  const gPL=val('gestionParLog'),mRev=val('menageRevParLog'),lPL=val('lingeParLog'),lingePct=val('coutLingePct')/100;
+  const mpl=val('menagesParLog'),dur=val('dureeMenage'),tPrest=val('tauxPrest'),hCDI=val('hCDImenage'),sem=val('semaines');
+  const net=val('cdiNet'),tBrut=val('tauxBrut'),tPat=val('tauxPatronal')/100;
+  const phone=val('cdiPhone'),mut=val('cdiMutuelle'),assu=val('cdiAssurance'),avn=val('cdiAvNature'),prime=val('cdiPrime');
+  const regime=document.getElementById('regime').value,tvaT=val('tvaTaux')/100;
+  const isBas=val('isTauxBas')/100,isHaut=val('isTauxHaut')/100,isSeuil=val('isSeuil'),tIR=val('tauxIR')/100;
+
+  const gestion=n*gPL,menageRev=n*mRev,lingeRev=n*lPL,CA=gestion+menageRev+lingeRev;
+  const htot=n*mpl*dur,hprest=Math.max(0,htot-hCDI),coutPrest=hprest*tPrest,coutLinge=lingeRev*lingePct;
+  const brutMois=net*tBrut,empMois=brutMois*(1+tPat),salAnn=empMois*12,avAnn=(phone+mut+assu+avn)*12+prime,cdiTotal=salAnn+avAnn;
+  const cf=cfAnnHT(),totalCharges=coutPrest+coutLinge+cf+cdiTotal,benefice=CA-totalCharges;
+  const tvaColl=CA*tvaT,tvaDed=cfTVA(),tvaRev=tvaColl-tvaDed;
+  let impot;const b=Math.max(0,benefice);
+  if(regime==='IS')impot=isBas*Math.min(b,isSeuil)+isHaut*Math.max(0,b-isSeuil);else impot=b*tIR;
+  const resultatNet=benefice-impot;
+  const contribPL=gPL+(mRev-mpl*dur*tPrest)+lPL*(1-lingePct);
+  const cdiNetACouvrir=cdiTotal-hCDI*tPrest;
+  const logAutofin=contribPL>0?cdiNetACouvrir/contribPL:Infinity;
+  const hcom=Math.max(0,35*sem-hCDI),comSem=hcom/sem;
+  return {n,CA,gestion,menageRev,lingeRev,htot,hprest,hCDI,coutPrest,coutLinge,brutMois,empMois,salAnn,avAnn,cdiTotal,
+    cf,totalCharges,benefice,tvaColl,tvaDed,tvaRev,impot,resultatNet,contribPL,cdiNetACouvrir,logAutofin,hcom,comSem,regime};
+}
+function seuilLog(){for(let n=1;n<=250;n++){if(computeFor(n).resultatNet>=0)return n;}return null;}
+
+/* réalisé cette année (bilan) */
+const REEL={n:49,gest:45568,men:21198,linge:6980};REEL.ca=REEL.gest+REEL.men+REEL.linge;
+
+function render(){
+  document.querySelectorAll('input[type=range]').forEach(fillTrack);
+  const n=+val('nbLog');const s=computeFor(n);
+
+  /* labels curseurs */
+  setV('nbLog',n+' logts');
+  setV('gestionParLog',f0(val('gestionParLog')));
+  setV('menageRevParLog',f0(val('menageRevParLog')));
+  setV('lingeParLog',f0(val('lingeParLog')));
+  setV('coutLingePct',val('coutLingePct')+' %');
+  setV('menagesParLog',val('menagesParLog'));
+  setV('dureeMenage',val('dureeMenage').toFixed(2).replace('.',',')+' h');
+  setV('tauxPrest',val('tauxPrest')+' €/h');
+  setV('hCDImenage',val('hCDImenage')+' h');
+  setV('semaines',val('semaines')+' sem.');
+  setV('cdiNet',f0(val('cdiNet'))+' /mois');
+  setV('tauxBrut','× '+val('tauxBrut').toFixed(2).replace('.',','));
+  setV('tauxPatronal',val('tauxPatronal')+' %');
+
+  /* ---- DASHBOARD ---- */
+  document.getElementById('k-ca').textContent=f0(s.CA);
+  document.getElementById('k-ca-h').textContent=f0(s.CA/n)+' / logement';
+  const kres=document.getElementById('k-res');kres.textContent=f0(s.resultatNet);kres.className='big num '+(s.resultatNet>=0?'pos':'neg');
+  document.getElementById('k-res-h').textContent=s.regime;
+  const seuil=seuilLog();
+  document.getElementById('k-seuil').textContent=seuil?seuil+' logts':'—';
+  document.getElementById('k-seuil-h').textContent=seuil?(n>=seuil?'atteint':'à '+(seuil-n)+' biens'):'';
+  document.getElementById('k-autofin').textContent=Math.ceil(s.logAutofin);
+
+  setLine('d-ca',f0(s.CA));setLine('d-gest',f0(s.gestion));setLine('d-menrev',f0(s.menageRev));setLine('d-lingerev',f0(s.lingeRev));
+  setLine('d-prest','− '+f0(s.coutPrest));setLine('d-linge','− '+f0(s.coutLinge));setLine('d-cf','− '+f0(s.cf));setLine('d-cdi','− '+f0(s.cdiTotal));
+  setLine('d-benef',f0(s.benefice),s.benefice>=0?'pos':'neg');
+  document.getElementById('d-regime').textContent=s.regime;
+  setLine('d-impot','− '+f0(s.impot));
+  setLine('d-net',f0(s.resultatNet),s.resultatNet>=0?'pos':'neg');
+  setLine('d-tva',f0(s.tvaRev));
+
+  const obj=document.getElementById('d-objectif');
+  if(s.resultatNet>=0){
+    obj.innerHTML='<div class="alert ok"><span class="dot">✓</span><span>À '+n+' logements, tu es rentable : <b>'+f0(s.resultatNet)+'</b> de résultat net. Le seuil d\'équilibre est à '+seuil+' biens, tu es au-dessus.</span></div>';
+  } else {
+    const manque=seuil?seuil-n:null;
+    obj.innerHTML='<div class="alert warn"><span class="dot">!</span><span>À '+n+' logements, tu es en perte de <b>'+f0(-s.resultatNet)+'</b>. Il te faut atteindre <b>'+(seuil||'>250')+' logements</b> pour l\'équilibre'+(manque?', soit <b>'+manque+' biens de plus</b>':'')+'.</span></div>';
+  }
+  setLine('d-cdi2',f0(s.cdiTotal));setLine('d-ecomen','− '+f0(s.hCDI*val('tauxPrest')));setLine('d-reste',f0(s.cdiNetACouvrir));
+  setLine('d-contrib',f0(s.contribPL));setLine('d-logautofin',Math.ceil(s.logAutofin)+' logts');
+  setLine('d-htot',Math.round(s.htot)+' h');setLine('d-hcdi',s.hCDI+' h');setLine('d-ecoprest',f0(s.hCDI*val('tauxPrest')));
+  const ca2=document.getElementById('d-comalert');
+  if(s.comSem<10)ca2.innerHTML='<div class="alert warn"><span class="dot">!</span><span>Il ne reste que '+s.comSem.toFixed(0)+' h/sem au CDI pour le commercial : le développement risque d\'être étouffé.</span></div>';
+  else ca2.innerHTML='<div class="alert ok"><span class="dot">✓</span><span>'+s.comSem.toFixed(0)+' h/sem restantes pour le commercial et l\'opérationnel.</span></div>';
+
+  /* ---- CA ---- */
+  document.getElementById('ca-parlog').textContent=f0(s.CA/n);
+  const cab=document.getElementById('ca-body');cab.innerHTML='';
+  const rr=document.createElement('tr');rr.className='ref';
+  rr.innerHTML='<td class="name">Réalisé '+REEL.n+'</td><td>'+f0(REEL.gest)+'</td><td>'+f0(REEL.men)+'</td><td>'+f0(REEL.linge)+'</td><td>'+f0(REEL.ca)+'</td>';
+  cab.appendChild(rr);
+  [50,60,70,80].forEach(k=>{const c=computeFor(k);const tr=document.createElement('tr');if(k===n)tr.className='live';
+    tr.innerHTML='<td class="name">'+k+' logts</td><td>'+f0(c.gestion)+'</td><td>'+f0(c.menageRev)+'</td><td>'+f0(c.lingeRev)+'</td><td>'+f0(c.CA)+'</td>';cab.appendChild(tr);});
+  document.getElementById('ca-insight').textContent='Ton réalisé cette année : ~'+f0(REEL.ca)+' de CA sur '+REEL.n+' biens ('+f0(REEL.ca/REEL.n)+'/logement), à faible remplissage. En montant en gamme et en occupation, tu vises plutôt '+f0(s.CA/n)+'/logement.';
+  document.getElementById('ca-target').textContent='Pour viser 150 000 € de CA, il te faut ~'+Math.ceil(150000/(s.CA/n))+' logements au niveau de revenu/logement actuel — ou un meilleur remplissage par bien.';
+
+  /* ---- MÉNAGE ---- */
+  setLine('m-htot',Math.round(s.htot)+' h');setLine('m-hcdi',s.hCDI+' h');setLine('m-hprest',Math.round(s.hprest)+' h');
+  setLine('m-coutprest',f0(s.coutPrest));setLine('m-hcom',Math.round(s.hcom)+' h ('+s.comSem.toFixed(0)+' h/sem)');
+  const ma=document.getElementById('m-alert');
+  if(s.comSem<10)ma.innerHTML='<div class="alert warn"><span class="dot">!</span><span>À ce volume de ménage, il ne reste que '+s.comSem.toFixed(0)+' h/sem au CDI pour le commercial. Le poste devient surtout opérationnel.</span></div>';
+  else ma.innerHTML='<div class="alert ok"><span class="dot">✓</span><span>Le CDI garde '+s.comSem.toFixed(0)+' h/sem pour prospecter — équilibre sain entre ménage et commercial.</span></div>';
+
+  setLine('c-brut',f0(s.brutMois)+' /mois');setLine('c-empmois',f0(s.empMois)+' /mois');
+  setLine('c-salann',f0(s.salAnn));setLine('c-avann',f0(s.avAnn));setLine('c-total',f0(s.cdiTotal));
+
+  /* ---- CHARGES & IMPÔTS ---- */
+  setLine('cf-ann',f0(s.cf));setLine('cf-tva',f0(s.tvaDed));
+  setLine('t-coll',f0(s.tvaColl));setLine('t-ded',f0(s.tvaDed));setLine('t-rev',f0(s.tvaRev));
+  setLine('t-benef',f0(s.benefice),s.benefice>=0?'pos':'neg');setLine('t-impot',f0(s.impot));
+}
+
+/* onglets */
+document.querySelectorAll('nav button[data-tab]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');document.getElementById('tab-'+b.dataset.tab).classList.add('active');
+}));
+
+function onAnyInput(){render();renderTreso();}
+document.querySelectorAll('input[type=range],input[type=number],select,input[type=checkbox]').forEach(el=>{
+  if(!el.closest('#chg-body')&&!el.closest('#weights'))el.addEventListener('input',onAnyInput);
+});
+/* Enregistrer : regénère un HTML autonome avec les valeurs actuelles gelées */
+function exportVersion(){
+  document.querySelectorAll('input[type=range],input[type=number]').forEach(i=>i.setAttribute('value',i.value));
+  document.querySelectorAll('input[type=checkbox]').forEach(i=>{i.checked?i.setAttribute('checked','checked'):i.removeAttribute('checked');});
+  document.querySelectorAll('select').forEach(sel=>Array.from(sel.options).forEach(o=>{
+    if(o.value===sel.value)o.setAttribute('selected','selected');else o.removeAttribute('selected');
+  }));
+  let html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+  html=html.replace(/let charges=\[[\s\S]*?\];/, 'let charges='+JSON.stringify(charges)+';');
+  html=html.replace(/let weights=\[[^\]]*\];/, 'let weights='+JSON.stringify(weights)+';');
+  const blob=new Blob([html],{type:'text/html'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='business-plan-opti-'+new Date().toISOString().slice(0,10)+'.html';
+  document.body.appendChild(a);a.click();a.remove();
+  const btn=document.getElementById('export-btn');const old=btn.textContent;
+  btn.textContent='✓ Version téléchargée';setTimeout(()=>btn.textContent=old,2500);
+}
+document.getElementById('export-btn').addEventListener('click',exportVersion);
+
+/* ================= TRÉSORERIE ================= */
+const MONTHS=['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+let weights=[2,3,4,4,4,6,30,38,4,3,2,1];
+function lblT(t){const cm=(8+t)%12,yr=2026+Math.floor((8+t)/12);return MONTHS[cm]+' '+String(yr).slice(2);}
+function renderWeights(){
+  const w=document.getElementById('weights');if(!w)return;w.innerHTML='';
+  weights.forEach((v,i)=>{const d=document.createElement('div');d.className='wcell';
+    d.innerHTML='<span>'+MONTHS[i]+'</span><input type="number" step="0.5" value="'+v+'" data-w="'+i+'">';w.appendChild(d);});
+  w.querySelectorAll('input').forEach(inp=>inp.addEventListener('input',e=>{weights[+e.target.dataset.w]=parseFloat(e.target.value)||0;renderTreso();}));
+}
+function fillCdiStart(){const sel=document.getElementById('cdiStart');if(!sel)return;sel.innerHTML='';
+  for(let t=0;t<24;t++){const o=document.createElement('option');o.value=t;o.textContent=lblT(t);if(t===2)o.selected=true;sel.appendChild(o);}}
+function computeT(){
+  const solde=val('solde'),tvaDue0=val('tvaDue0'),cotisDue0=val('cotisDue0'),irDue0=val('irDue0');
+  const CA={2026:val('ca26'),2027:val('ca27'),2028:val('ca28')};
+  const varPct=val('varPct')/100,fixe=val('fixe'),gerant=val('gerantNet'),tns=val('tnsRate')/100;
+  const nbS=val('nbSaison'),sEach=val('saisonEach'),emp=val('empRate')/100;
+  const tvaR=val('tvaRate')/100,tvaDed=val('tvaDed'),irAn=val('irAnnuel');
+  const tvaFreq=parseInt(document.getElementById('tvaFreq').value),taxFreq=parseInt(document.getElementById('taxFreq').value);
+  const cdiOn=document.getElementById('cdiOn').checked,cdiCost=val('cdiCost'),cdiStart=parseInt(document.getElementById('cdiStart').value);
+  const startCourant=solde-tvaDue0-cotisDue0-irDue0;
+  let courant=startCourant,tva=tvaDue0,tax=cotisDue0+irDue0;
+  const C=[],T=[],X=[],TOT=[],rows=[];
+  for(let t=0;t<24;t++){
+    const cm=(8+t)%12,yr=2026+Math.floor((8+t)/12);
+    const cashHT=(CA[yr]||0)*(weights[cm]/100);
+    const tvaColl=cashHT*tvaR,varCost=cashHT*varPct;
+    const saison=(cm===6||cm===7)?nbS*sEach:0;
+    const gcot=gerant*tns,scot=saison*emp,ir=irAn/12;
+    const cdi=(cdiOn&&t>=cdiStart)?cdiCost:0;
+    const sortiesExpl=varCost+fixe+gerant+saison+cdi,provisions=gcot+scot+ir;
+    courant+=cashHT-sortiesExpl-provisions;tax+=provisions;tva+=(tvaColl-tvaDed);
+    if(t%tvaFreq===tvaFreq-1){const p=Math.max(0,tva);tva-=p;}
+    if(t%taxFreq===taxFreq-1){const p=Math.max(0,tax);tax-=p;}
+    const tot=courant+tva+tax;C.push(courant);T.push(tva);X.push(tax);TOT.push(tot);
+    rows.push({t,cashHT,sortiesExpl,provisions,courant,tva,tax,tot,summer:(cm===6||cm===7)});
+  }
+  return {C,T,X,TOT,rows,startCourant};
+}
+function niceStepT(r){const p=Math.pow(10,Math.floor(Math.log10(r)));const n=r/p;return (n>=5?10:n>=2?5:n>=1?2:1)*p;}
+function chartT(s){
+  const W=700,H=300,ml=58,mr=12,mt=12,mb=26,pw=W-ml-mr,ph=H-mt-mb;
+  const all=[...s.C,...s.T,...s.X,...s.TOT];let mn=Math.min(0,...all),mx=Math.max(...all);
+  const pad=(mx-mn)*0.08||1000;mx+=pad;mn-=pad;
+  const x=i=>ml+pw*i/23,y=v=>mt+ph*(1-(v-mn)/(mx-mn));
+  const grid=[];const step=niceStepT((mx-mn)/5);
+  for(let g=Math.ceil(mn/step)*step;g<=mx;g+=step){
+    grid.push('<line x1="'+ml+'" y1="'+y(g)+'" x2="'+(W-mr)+'" y2="'+y(g)+'" stroke="'+(Math.abs(g)<1?'#152229':'#E4E7E3')+'" stroke-width="'+(Math.abs(g)<1?1.3:1)+'"/>'
+      +'<text x="'+(ml-6)+'" y="'+(y(g)+3)+'" text-anchor="end" font-size="9" fill="#93A0A6" font-family="Space Grotesk">'+f0(g)+'</text>');}
+  const xl=[];for(let t=0;t<24;t+=3)xl.push('<text x="'+x(t)+'" y="'+(H-8)+'" text-anchor="middle" font-size="9" fill="#93A0A6" font-family="Space Grotesk">'+lblT(t)+'</text>');
+  const path=(vals,color,dash,fill)=>{let d=vals.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join(' ');let out='';
+    if(fill)out='<path d="'+d+' L'+x(23)+' '+y(mn)+' L'+x(0)+' '+y(mn)+' Z" fill="'+color+'" opacity="0.06"/>';
+    out+='<path d="'+d+'" fill="none" stroke="'+color+'" stroke-width="2.2"'+(dash?' stroke-dasharray="5 4"':'')+'/>';return out;};
+  return '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;margin-top:8px">'+grid.join('')+xl.join('')
+    +path(s.TOT,'#152229',true,false)+path(s.X,'#7A4F9E',false,false)+path(s.T,'#CF9233',false,false)+path(s.C,'#0F5C6B',false,true)+'</svg>';
+}
+function renderTreso(){
+  if(!document.getElementById('tbody'))return;
+  const s=computeT(),rr=s.rows,minC=Math.min(...s.C),minIdx=s.C.indexOf(minC),seuil=8000;
+  document.getElementById('k-dispo').textContent=f0(s.startCourant);
+  document.getElementById('k-dispo-h').textContent='sur '+f0(val('solde'))+' au total';
+  const kb=document.getElementById('k-bas');kb.textContent=f0(minC);kb.className='big num '+(minC>=0?'pos':'neg');
+  document.getElementById('k-bas-h').textContent='atteint en '+lblT(minIdx);
+  const fin26=s.C[3],kf=document.getElementById('k-fin26');kf.textContent=f0(fin26);kf.className='big num '+(fin26>=0?'pos':'neg');
+  const wasOn=document.getElementById('cdiOn').checked;
+  document.getElementById('cdiOn').checked=true;const minOn=Math.min(...computeT().C);document.getElementById('cdiOn').checked=wasOn;
+  const kc=document.getElementById('k-cdi');
+  if(minOn>=seuil){kc.textContent='Absorbable';kc.className='big num pos';kc.style.color='';document.getElementById('k-cdi-h').textContent='point bas resterait à '+f0(minOn);}
+  else if(minOn>=0){kc.textContent='Tendu';kc.className='big num';kc.style.color='#B07A1E';document.getElementById('k-cdi-h').textContent='point bas à '+f0(minOn)+', sous le matelas';}
+  else {kc.textContent='Risqué';kc.className='big num neg';kc.style.color='';document.getElementById('k-cdi-h').textContent='trésorerie négative ('+f0(minOn)+')';}
+  document.getElementById('chart').innerHTML=chartT(s);
+  const ca=document.getElementById('chart-alert');
+  if(minC<0)ca.innerHTML='<div class="alert warn"><span class="dot">!</span><span>Ton compte courant passe en négatif ('+f0(minC)+') en '+lblT(minIdx)+'. À sécuriser en priorité.</span></div>';
+  else if(minC<seuil)ca.innerHTML='<div class="alert info"><span class="dot">i</span><span>Point bas à '+f0(minC)+' en '+lblT(minIdx)+' : positif mais fin de matelas.</span></div>';
+  else ca.innerHTML='<div class="alert ok"><span class="dot">✓</span><span>Le compte courant ne descend jamais sous '+f0(minC)+' ('+lblT(minIdx)+').</span></div>';
+  const tb=document.getElementById('tbody');tb.innerHTML='';
+  rr.forEach(r=>{const tr=document.createElement('tr');if(r.summer)tr.className='summer';
+    tr.innerHTML='<td>'+lblT(r.t)+'</td><td>'+f0(r.cashHT)+'</td><td class="neg">−'+f0(r.sortiesExpl)+'</td><td class="neg">−'+f0(r.provisions)+'</td>'
+      +'<td class="'+(r.courant<0?'neg':'pos')+'">'+f0(r.courant)+'</td><td>'+f0(r.tva)+'</td><td>'+f0(r.tax)+'</td><td>'+f0(r.tot)+'</td>';
+    tb.appendChild(tr);});
+}
+renderCharges();render();
+renderWeights();fillCdiStart();renderTreso();
+</script>
+
+
+</body></html>
